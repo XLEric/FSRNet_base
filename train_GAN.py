@@ -136,7 +136,7 @@ if __name__ == '__main__':
             loss_f2 = a * criterion_MSE(fake, real)
             loss_f3 = b * criterion_MSE(prs, image_pr)
             loss_f = loss_f1 + loss_f2 + loss_f3
-            loss_p = r_p * criterion_MSE(F(fake), F(real).detach())
+            loss_p = r_p * criterion_MSE(F(fake), F(real.contiguous()).detach())
 
             generator_content_loss = loss_f + loss_p
             generator_adversarial_loss = r_c * criterion_BCE(D(fake), real_label)
