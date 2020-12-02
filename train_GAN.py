@@ -3,9 +3,8 @@
 # Author: X.L.Eric
 #function :
 
-
 import os
-os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 import argparse
 import numpy as np
 from PIL import Image
@@ -26,7 +25,6 @@ if __name__ == '__main__':
     torch.manual_seed(0)
     torch.cuda.manual_seed_all(0)
     cudnn.benchmark = True
-
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--dataset', default='celeba', type=str)
@@ -53,7 +51,7 @@ if __name__ == '__main__':
     # G = nn.DataParallel(G)
     # D = nn.DataParallel(D)
     ckpt_ = "./outputsGAN_2020-12-03-03-04-27/_checkpoints/001_psnr21.13.pth"
-    if os.path.exists(ckpt_)
+    if os.path.exists(ckpt_):
         print("load model ~")
         checkpoint = torch.load(ckpt_)
         state_dict = checkpoint['state_dict']
