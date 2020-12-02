@@ -41,7 +41,7 @@ if __name__ == '__main__':
         print('not implemented')
         exit()
 
-    trn_dloader = torch.utils.data.DataLoader(dataset=trn_dataset, batch_size=2, shuffle=True)
+    trn_dloader = torch.utils.data.DataLoader(dataset=trn_dataset, batch_size=8, num_workers=4,shuffle=True)
     val_dloader = torch.utils.data.DataLoader(dataset=val_dataset, batch_size=1, shuffle=False)
     hmaps_ch, pmaps_ch = trn_dataset.num_channels()
 
@@ -92,7 +92,7 @@ if __name__ == '__main__':
         # train
         losses_D = []; losses_G = []
         for batch_idx, (image_lr, image_hr, hmaps, pmaps) in enumerate(trn_dloader, start=1):
-
+#             print("image_lr size:",image_lr.size())
             image_lr = torch.from_numpy(_normalize(image_lr)).float().cuda()
             image_hr = torch.from_numpy(_normalize(image_hr)).float().cuda()
 
